@@ -1,0 +1,59 @@
+@startuml Titre
+'--------------------------------
+' Parametres pour le dessin
+'--------------------------------
+hide circle
+hide empty members
+hide empty methods
+'--------------------------------
+
+
+class Stages { 
+  lieu
+  deteDebut
+  dateFin
+  nomTuteur
+  theme
+}
+
+class Entreprise{
+  nom 
+  adresse
+  siegeSocial
+}
+
+class Promotion{
+  nom
+}
+
+class Etudiant{
+  nimINE
+  nom
+  prenom
+  moyenneGeneral
+}
+
+class GroupeTP{
+  num
+}
+
+class GroupeTD{
+  num
+}
+
+class Enseignant {
+  nom
+  prenom
+  spécialité
+}
+
+Tuteur -|> Enseignant 
+
+Stages "*" --  "1" Entreprise
+Stages -  "1" Promotion
+Etudiant -  "1" GroupeTP
+GroupeTP -  "1" GroupeTD
+GroupeTD -- "1" Promotion
+Stages -- "0..1" Tuteur
+
+@enduml
