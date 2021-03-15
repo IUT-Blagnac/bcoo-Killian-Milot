@@ -14,6 +14,7 @@ class Stages {
   dateFin
   nomTuteur
   theme
+  note
 }
 
 class Entreprise{
@@ -47,13 +48,12 @@ class Enseignant {
   spécialité
 }
 
-Tuteur -|> Enseignant 
 
 Stages "*" --  "1" Entreprise
 Stages -  "1" Promotion
 Etudiant -  "1" GroupeTP
 GroupeTP -  "1" GroupeTD
 GroupeTD -- "1" Promotion
-Stages -- "0..1" Tuteur
+Stages -- "0..1\ntuteur" Enseignant
 
 @enduml
