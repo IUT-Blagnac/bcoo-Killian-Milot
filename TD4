@@ -17,7 +17,8 @@ r <|-- rs
 r <|-- rm
 enseignant -> (r)
 eleves -> (cps)
-eleves <|-- enseignant
+enseignant -> (cps)
+enseignant <|-- enseignant responsable
 enseignant --> (crh)
 enseignant responsable --> (erh)
 
