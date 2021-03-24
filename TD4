@@ -1,0 +1,17 @@
+@startuml
+
+actor enseignant
+actor eleves
+
+usecase (reservation des salle)
+usecase (reservation du materiel)
+usecase (planning des salles)
+usecase (récapitulatif horaire)
+
+enseignant -> (reservation du materiel)
+enseignant --> (reservation des salle)
+eleves --> (planning des salles)
+enseignant -|> eleves
+enseignant --> (récapitulatif horaire)
+
+@enduml
