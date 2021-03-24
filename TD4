@@ -2,16 +2,23 @@
 
 actor enseignant
 actor eleves
+'actor enseignant responsable
 
-usecase (reservation des salle)
-usecase (reservation du materiel)
-usecase (planning des salles)
-usecase (récapitulatif horaire)
+usecase r as (reservation)
+usecase rs as (reservation des salle)
+usecase rm as (reservation du materiel)
+usecase d as (Examen de la disponibiliter)
+usecase ps as (planning des salles)
+usecase rh as (récapitulatif horaire)
+'usecase erh as (éditer le récapitulatif horaire)
 
-enseignant -> (reservation du materiel)
-enseignant --> (reservation des salle)
-eleves --> (planning des salles)
-enseignant -|> eleves
-enseignant --> (récapitulatif horaire)
+r .> d : <<include>>
+r <|-- rs
+r <|-- rm
+enseignant -> (r)
+eleves -> (ps)
+eleves <|-- enseignant
+enseignant --> (rh)
+'enseignant responsable --> (erh)
 
 @enduml
