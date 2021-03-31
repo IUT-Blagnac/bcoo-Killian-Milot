@@ -1,0 +1,54 @@
+@startuml
+
+'autonumber
+hide footbox
+
+participant A as ":Client"
+participant B as ":Caissier"
+
+participant C as ":Caisse"
+A -> B: arrive
+activate B
+
+participant Tapis as ":Tapis"
+
+A -> Tapis: deposerArticles
+activate Tapis
+
+loop "Pour chaque article a"
+  B -> Tapis: prendreArticle
+  B -> C: scan(a)
+  activate C
+  
+  participant Article as "a:Article"
+  
+  par
+  C --> Article: getPrix()
+  C --> Article: getLibellé()
+
+  else
+  opt "qté > 1"
+    B -> C: saisir(Qté)
+  end
+  end
+  C --> A: prix et libellé
+  C --> B: prix et libellé
+
+  C -> C: montantTotal += prix * qté
+end
+
+  B -> C: fin
+  C --> B: montant total
+  B --> A: montant total
+
+  A -> B : payer en liquide (s)
+  B -> C : encaisser (s)
+
+  C --> B : reste à rendre
+  B -> A : rendre (reste)
+
+  C -> C : enregistrer
+  C --> B : imprimer ticket
+
+  B --> A : donner ticket
+@enduml
